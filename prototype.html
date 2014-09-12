@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head><title>
+Prototypal Inheritance
+</title></head>
+<body>
+<script type="text/javascript">
+
+function Product(name,price){
+	this.name = name;
+	this.price = price;
+	if(price < 0){
+		throw RangeError('Cannot create product '+name + 'with a negative price');
+		return this;
+
+	}
+}
+
+function Food(name , price){
+
+	Product.call(this,name, price);
+	this.category = 'food';
+}
+Food.prototype = Object.create(Product.prototype);// this has created a prototype(for product) having elemnt from Food and Product in the context of Food.
+var cheese = new Food('feta',5);
+document.write(cheese.name +"<br/>"+cheese.price +"<br/>"+cheese.category);
+console.log(cheese);
+
+</script>
+</body>
+</html>
+
+
